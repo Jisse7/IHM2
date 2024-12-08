@@ -1,38 +1,34 @@
-# sv
+# Comment utiliser le projet 
 
-Everything you need to build a Svelte project, powered by [`sv`](https://github.com/sveltejs/cli).
+## I.Cloner le dépôt Github
 
-## Creating a project
+1.Ouvrez le terminal ou un invite de commande.
 
-If you're seeing this, you've probably already done this step. Congrats!
+2.Cloner le dépôt en exécutant la commande suivante : 
 
 ```bash
-# create a new project in the current directory
-npx sv create
+# pour clôner
+git clone <https://github.com/Jisse7/IHM2.git>
 
-# create a new project in my-app
-npx sv create my-app
+# pour accéder au répertoire du projet 
+cd IHM2
+```
+## Installer les dépendances
+
+Si node.js est installé 
+```bash
+
+npm install
+
+
 ```
 
-## Developing
+## Lancer le projet
 
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
-
+Si node.js est installé 
 ```bash
+
 npm run dev
 
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
+
 ```
-
-## Building
-
-To create a production version of your app:
-
-```bash
-npm run build
-```
-
-You can preview the production build with `npm run preview`.
-
-> To deploy your app, you may need to install an [adapter](https://svelte.dev/docs/kit/adapters) for your target environment.
