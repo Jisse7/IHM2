@@ -9,7 +9,8 @@
 ```bash
 # pour clôner
 git clone <https://github.com/Jisse7/IHM2.git>
-
+```
+```bash
 # pour accéder au répertoire du projet 
 cd IHM2
 ```
