@@ -12,7 +12,7 @@ Auteurs : Yanis B. M2 IC - Jean-Christophe F. M2 DCISS
 
 ```bash
 # pour clôner
-git clone <https://github.com/Jisse7/IHM2.git>
+git clone https://github.com/Jisse7/IHM2.git
 ```
 ```bash
 # pour accéder au répertoire du projet 
