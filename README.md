@@ -6,7 +6,7 @@ Auteurs : Yanis B. M2 IC - Jean-Christophe F. M2 DCISS
 
 ## I. Cloner le dépôt Github
 
-1. Ouvrez le terminal ou un invite de commande.
+1. Ouvrir le terminal ou un invite de commande.
 
 2. Cloner le dépôt en exécutant la commande suivante : 
 
