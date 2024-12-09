@@ -31,3 +31,8 @@ Pour exécuter le projet
 ```bash
 npm run dev
 ```
+
+
+## Lien vers le Figma du projet : 
+
+https://www.figma.com/design/vlmJAuTpbJ860QjBQhhrd8/IHM2?node-id=0-1&node-type=canvas&t=4z8r03LBNfMs2gFS-0
