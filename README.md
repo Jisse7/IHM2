@@ -11,11 +11,9 @@ Auteurs : Yanis B. M2 IC - Jean-Christophe F. M2 DCISS
 2. Cloner le dépôt en exécutant la commande suivante : 
 
 ```bash
-# pour clôner
 git clone https://github.com/Jisse7/IHM2.git
 ```
 ```bash
-# pour accéder au répertoire du projet 
 cd IHM2
 ```
 ## II. Installer les dépendances
