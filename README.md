@@ -1,6 +1,6 @@
 ## Projet IHM2 : Clone de Spotify en Svelte.js. 
 
-Auteurs : Yanis B. M2 IC - Jean-Christophe F. M2DCISS
+Auteurs : Yanis B. M2 IC - Jean-Christophe F. M2 DCISS
 
 # Comment utiliser le projet 
 
