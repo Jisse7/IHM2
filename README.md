@@ -1,3 +1,7 @@
+## Projet IHM2 : Clone de Spotify en Svelte.js. 
+
+Auteurs : Yanis B. M2 IC - Jean-Christophe F. M2DCISS
+
 # Comment utiliser le projet 
 
 ## I. Cloner le dépôt Github
@@ -24,7 +28,7 @@ npm install
 
 ## III. Lancer le projet
 
-Si node.js est installé
+Pour exécuter le projet
 
 ```bash
 npm run dev
