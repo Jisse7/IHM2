@@ -2,26 +2,113 @@
   import {login} from '$lib/stores';  
   import {estCo} from '$lib/stores';  
 
+  let showDropdown = false;
+
+  $: console.log("estCo:", $estCo, "login:", $login);
+
   function handleClick() {
-      $login = true;
+    $login = true;
   }
 
-  function logSetFalse(){
-    $login=false;
+  function toggleDropdown() {
+    showDropdown = !showDropdown;
   }
+
+  function handleLogout() {
+    console.log('Déconnexion...');
+    $estCo = false;
+    $login = false;
+    showDropdown = false;
+  }
+
+  function handleClickOutside(event) {
+    if (profileContainer && !profileContainer.contains(event.target)) {
+      showDropdown = false;
+    }
+  }
+
+  let profileContainer;
 </script>
 
+<svelte:window on:click={handleClickOutside}/>
+
 {#if $estCo}
-<button class="button" on:click={handleClick}>
-  <span class="text-light">JC</span>
-  <span class="tooltip">Profil</span>
-</button>
+<div class="profile-container" bind:this={profileContainer}>
+  <button class="button" on:click={toggleDropdown}>
+    <span class="text-light">X</span>
+  
+  </button>
+
+  {#if showDropdown}
+    <div class="dropdown" on:click>
+      <div class="dropdown-item">
+        <a href="#profile" on:click={handleLogout}>Profil</a>
+      </div>
+      <div class="dropdown-item">
+        <button type="button" class="logout-button" on:click={handleLogout}>
+          Se déconnecter
+        </button>
+      </div>
+    </div>
+  {/if}
+</div>
 
 {:else}
-
-<a href="#" class="log_in" on:click={handleClick}>Se connecter</a>
+<a href="#" class="log_in" on:click|preventDefault={handleClick}>Se connecter</a>
 {/if}
+
   <style>
+  .logout-button {
+    width: 100%;
+    text-align: left;
+  }
+
+.profile-container {
+    position: relative;
+    display: inline-block;
+  }
+
+  .dropdown {
+    position: absolute;
+    top: 60px;
+    right: 0;
+    background-color: rgb(44, 44, 44);
+    border-radius: 8px;
+    width: 200px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+  }
+
+  .dropdown-item {
+    padding: 12px 16px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .dropdown-item:last-child {
+    border-bottom: none;
+  }
+
+  .dropdown-item a,
+  .dropdown-item button {
+    color: white;
+    text-decoration: none;
+    background: none;
+    border: none;
+    width: 100%;
+    text-align: left;
+    font-size: 14px;
+    cursor: pointer;
+    padding: 0;
+  }
+
+  .dropdown-item:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+  }
+
+  .dropdown-item a:hover,
+  .dropdown-item button:hover {
+    color: #1db954;
+  }
 
 .log_in {
     display: inline-block; 

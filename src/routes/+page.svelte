@@ -12,10 +12,6 @@
     import ResultatRecherche from "$lib/components/ResultatRecherche.svelte";
     import CreerPlaylist  from "$lib/components/CreerPlaylist.svelte";
 
-    import Player from "$lib/components/Player.svelte"
-
-
-
     import UserPlaylists from "$lib/components/UserPlaylists.svelte";
     
 
@@ -23,9 +19,6 @@
     import {login} from '$lib/stores';
     import {estCo} from '$lib/stores';
 
-
-
-    
 </script>
 
 

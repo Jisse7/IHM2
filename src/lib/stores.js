@@ -1,4 +1,4 @@
-// Pour la gestion des composants dans +page.svelte principalement
+// Pour la gestion des composants dans +page.svelte principalement : le store de base 
 
 
 import { writable } from 'svelte/store';
@@ -13,6 +13,8 @@ export const creerPlaylist = writable(false);
 export const lectureFavoris = writable(false);
 
 export const changerMusique=writable();
+
+export const volume=writable();
 
 // resultat de la recherche 
 

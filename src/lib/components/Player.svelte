@@ -1,114 +1,123 @@
 <script>
-      import { onMount, onDestroy } from 'svelte';
-    import { audioPlayer, status, isPlaying, index, favoris, thisNextTrack } from '$lib/store_favoris.js';
+  import { onMount, onDestroy } from 'svelte';
+import { audioPlayer, status, isPlaying, index, favoris, thisNextTrack } from '$lib/store_favoris.js';
+import {volume} from '$lib/stores.js'
+
+let audio;
+let playlist;
+let currentTime = 0;
+let duration = 0;
+let progressBarHover = false;
+let currentIndex;
+let currentVolume;
+
+
+favoris.subscribe(value => playlist = value);
+index.subscribe(value => currentIndex = value);
+volume.subscribe(value => {
+  currentVolume = value;
+  if (audio) {
+    audio.volume = value / 100;
+  }
+});
+
+onMount(() => {
+  audio = new Audio();
+  audioPlayer.set(audio);
   
-    let audio;
-    let playlist;
-    let currentTime = 0;
-    let duration = 0;
-    let volume = 1;
-    let progressBarHover = false;
-    let currentIndex;
-    
-    favoris.subscribe(value => playlist = value);
-    index.subscribe(value => currentIndex = value);
-    
-    onMount(() => {
-      audio = new Audio();
-      audioPlayer.set(audio);
-      
-      if (playlist && playlist.length > 0) {
-        // Charge la piste
-        loadTrack($thisNextTrack);
-        // Met à jour l'index
-        index.set($thisNextTrack);
-        // Commence la lecture automatiquement
-        audio.play()
-          .then(() => {
-            isPlaying.set(true);
-            status.set('playing');
-          })
-          .catch(error => {
-            console.error('Erreur lors de la lecture automatique:', error);
-            status.set('error');
-          });
-      }
+
+  volume.set(25);
+  audio.volume = 0.25;
   
-      // Mise à jour du temps et de la durée
-      audio.addEventListener('timeupdate', () => {
-        currentTime = audio.currentTime;
-      });
-  
-      audio.addEventListener('loadedmetadata', () => {
-        duration = audio.duration;
-      });
-  
-      audio.addEventListener('ended', () => {
-        playNext();
-      });
-    });
-    
-    onDestroy(() => {
-      if (audio) {
-        audio.pause();
-        audio.removeEventListener('timeupdate', null);
-        audio.removeEventListener('loadedmetadata', null);
-        audio.removeEventListener('ended', null);
-      }
-    });
-    
-    function loadTrack(trackIndex) {
-      if (playlist[trackIndex]) {
-        audio.src = playlist[trackIndex].file;
-        index.set(trackIndex);
-        status.set('loading');
-      }
-    }
-  
-    function togglePlay() {
-      if (audio.paused) {
-        audio.play();
+  if (playlist && playlist.length > 0) {
+    loadTrack($thisNextTrack);
+    index.set($thisNextTrack);
+    audio.play()
+      .then(() => {
         isPlaying.set(true);
         status.set('playing');
-      } else {
-        audio.pause();
-        isPlaying.set(false);
-        status.set('paused');
-      }
-    }
-  
-    function playNext() {
-      let nextIndex = currentIndex + 1;
-      if (nextIndex >= playlist.length) nextIndex = 0;
-      loadTrack(nextIndex);
-      audio.play();
-      isPlaying.set(true);
-    }
-  
-    function playPrevious() {
-      let prevIndex = currentIndex - 1;
-      if (prevIndex < 0) prevIndex = playlist.length - 1;
-      loadTrack(prevIndex);
-      audio.play();
-      isPlaying.set(true);
-    }
-  
-    function formatTime(seconds) {
-      const minutes = Math.floor(seconds / 60);
-      const remainingSeconds = Math.floor(seconds % 60);
-      return `${minutes}:${remainingSeconds.toString().padStart(2, '0')}`;
-    }
-  
-    function handleProgressClick(event) {
-      const bounds = event.currentTarget.getBoundingClientRect();
-      const percent = (event.clientX - bounds.left) / bounds.width;
-      audio.currentTime = percent * duration;
-    }
-  
-    function handleVolumeChange(event) {
-      volume = event.target.value;
-      audio.volume = volume;
-    }
+      })
+      .catch(error => {
+        console.error('Erreur lors de la lecture automatique:', error);
+        status.set('error');
+      });
+  }
+
+  audio.addEventListener('timeupdate', () => {
+    currentTime = audio.currentTime;
+  });
+
+  audio.addEventListener('loadedmetadata', () => {
+    duration = audio.duration;
+  });
+
+  audio.addEventListener('ended', () => {
+    playNext();
+  });
+});
+
+onDestroy(() => {
+  if (audio) {
+    audio.pause();
+    audio.removeEventListener('timeupdate', null);
+    audio.removeEventListener('loadedmetadata', null);
+    audio.removeEventListener('ended', null);
+  }
+});
+
+function loadTrack(trackIndex) {
+  if (playlist[trackIndex]) {
+    audio.src = playlist[trackIndex].file;
+    index.set(trackIndex);
+    status.set('loading');
+  }
+}
+
+function togglePlay() {
+  if (audio.paused) {
+    audio.play();
+    isPlaying.set(true);
+    status.set('playing');
+  } else {
+    audio.pause();
+    isPlaying.set(false);
+    status.set('paused');
+  }
+}
+
+function playNext() {
+  let nextIndex = currentIndex + 1;
+  if (nextIndex >= playlist.length) nextIndex = 0;
+  loadTrack(nextIndex);
+  audio.play();
+  isPlaying.set(true);
+}
+
+function playPrevious() {
+  let prevIndex = currentIndex - 1;
+  if (prevIndex < 0) prevIndex = playlist.length - 1;
+  loadTrack(prevIndex);
+  audio.play();
+  isPlaying.set(true);
+}
+
+function formatTime(seconds) {
+  const minutes = Math.floor(seconds / 60);
+  const remainingSeconds = Math.floor(seconds % 60);
+  return `${minutes}:${remainingSeconds.toString().padStart(2, '0')}`;
+}
+
+function handleProgressClick(event) {
+  const bounds = event.currentTarget.getBoundingClientRect();
+  const percent = (event.clientX - bounds.left) / bounds.width;
+  audio.currentTime = percent * duration;
+}
+
+function handleVolumeChange(event) {
+  const newVolume = parseFloat(event.target.value);
+  volume.set(newVolume * 100);
+  audio.volume = newVolume;
+}
   </script>
   
   <div class="player">
