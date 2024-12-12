@@ -1,139 +1,63 @@
 <script>
-  import {login} from '$lib/stores';  
+  import {login, clicProfil} from '$lib/stores';  
   import {estCo} from '$lib/stores';  
+  import {clicLibrairie, clicAccueil, clicFavoris, creerPlaylist } from '$lib/stores';
 
-  let showDropdown = false;
-
-  $: console.log("estCo:", $estCo, "login:", $login);
 
   function handleClick() {
-    $login = true;
+      $login = true;
   }
 
-  function toggleDropdown() {
-    showDropdown = !showDropdown;
+  function toggleProfile() {
+    $clicProfil = !$clicProfil;
   }
 
-  function handleLogout() {
-    console.log('Déconnexion...');
-    $estCo = false;
+  function logSetFalse(){
     $login = false;
-    showDropdown = false;
   }
 
-  function handleClickOutside(event) {
-    if (profileContainer && !profileContainer.contains(event.target)) {
-      showDropdown = false;
-    }
+  function actionProfil(){
+    $clicLibrairie = false;
+    $clicFavoris = false;
+    $clicAccueil = false;
+    $creerPlaylist = false;
+    $clicProfil=true;
   }
-
-  let profileContainer;
 </script>
 
-<svelte:window on:click={handleClickOutside}/>
-
 {#if $estCo}
-<div class="profile-container" bind:this={profileContainer}>
-  <button class="button" on:click={toggleDropdown}>
-    <span class="text-light">X</span>
-  
-  </button>
+<button class="button" on:click={actionProfil}>
+<span class="text-light" >X</span>
+  <span class="tooltip">Profil</span>
+</button>
 
-  {#if showDropdown}
-    <div class="dropdown" on:click>
-      <div class="dropdown-item">
-        <a href="#profile" on:click={handleLogout}>Profil</a>
-      </div>
-      <div class="dropdown-item">
-        <button type="button" class="logout-button" on:click={handleLogout}>
-          Se déconnecter
-        </button>
-      </div>
-    </div>
-  {/if}
-</div>
+
 
 {:else}
-<a href="#" class="log_in" on:click|preventDefault={handleClick}>Se connecter</a>
+<a href="#" class="log_in" on:click={handleClick}>Se connecter</a>
 {/if}
 
-  <style>
-  .logout-button {
-    width: 100%;
-    text-align: left;
-  }
-
-.profile-container {
-    position: relative;
-    display: inline-block;
-  }
-
-  .dropdown {
-    position: absolute;
-    top: 60px;
-    right: 0;
-    background-color: rgb(44, 44, 44);
-    border-radius: 8px;
-    width: 200px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    z-index: 1000;
-  }
-
-  .dropdown-item {
-    padding: 12px 16px;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-  }
-
-  .dropdown-item:last-child {
-    border-bottom: none;
-  }
-
-  .dropdown-item a,
-  .dropdown-item button {
-    color: white;
-    text-decoration: none;
-    background: none;
-    border: none;
-    width: 100%;
-    text-align: left;
-    font-size: 14px;
-    cursor: pointer;
-    padding: 0;
-  }
-
-  .dropdown-item:hover {
-    background-color: rgba(255, 255, 255, 0.1);
-  }
-
-  .dropdown-item a:hover,
-  .dropdown-item button:hover {
-    color: #1db954;
-  }
-
+<style>
 .log_in {
-    display: inline-block; 
-    background-color: #ffffff; 
-    color: #000000; 
-    text-decoration: none; 
-    font-size: 16px; 
+    display: inline-block;
+    background-color: #ffffff;
+    color: #000000;
+    text-decoration: none;
+    font-size: 16px;
     font-weight: bold;
     padding: 10px 20px;
     border: 2px solid #000000;
-    border-radius: 50px; 
-    text-align: center; 
-    cursor: pointer; 
+    border-radius: 50px;
+    text-align: center;
+    cursor: pointer;
+}
   
-  }
-  
-  .log_in:hover {
-    background-color: #000000; /* fond noir au survol */
-    color: #ffffff; /* texte blanc au survol */
-  }
+.log_in:hover {
+    background-color: #000000;
+    color: #ffffff;
+}
 
-
-
-  /* Style du bouton */
-  .button {
+.button {
     width: 50px;
     height: 50px;
     position: relative;
@@ -146,23 +70,21 @@
     transition-duration: 0.3s;
     box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.13);
     border: none;
-  }
+}
   
-  /* Texte "JC" */
-  .text-light {
-    color: white; 
+.text-light {
+    color: white;
     font-size: 16px;
     font-weight: bold;
     transition: color 0.3s ease;
-  }
+}
   
-  /* Style du tooltip caché par défaut */
-  .tooltip {
+.tooltip {
     position: absolute;
-    bottom: -30px; /* Place le tooltip sous le bouton */
+    bottom: -30px;
     left: 50%;
     transform: translateX(-50%);
-    opacity: 0; /* Invisible par défaut */
+    opacity: 0;
     background-color: rgb(12, 12, 12);
     color: white;
     padding: 5px 10px;
@@ -170,10 +92,9 @@
     font-size: 12px;
     transition: opacity 0.3s ease, transform 0.3s ease;
     pointer-events: none;
-  }
+}
   
-  /* la flèche sous le tooltip */
-  .tooltip::before {
+.tooltip::before {
     content: "";
     position: absolute;
     top: -5px;
@@ -182,20 +103,18 @@
     width: 10px;
     height: 10px;
     background-color: rgb(12, 12, 12);
-  }
+}
   
-  /* Effet au survol */
-  .button:hover {
+.button:hover {
     background-color: rgb(56, 56, 56);
-  }
+}
   
-  .button:hover .text-light {
-    color: #1db954; 
-  }
+.button:hover .text-light {
+    color: #1db954;
+}
   
-  .button:hover .tooltip {
-    opacity: 1; 
-    transform: translateX(-50%) translateY(-5px); 
-  }
-  </style>
-  
+.button:hover .tooltip {
+    opacity: 1;
+    transform: translateX(-50%) translateY(-5px);
+}
+</style>

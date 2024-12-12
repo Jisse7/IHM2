@@ -1,12 +1,13 @@
 <script>
   import '@fortawesome/fontawesome-free/css/all.css';
-  import {clicLibrairie, clicAccueil, clicFavoris, creerPlaylist } from '$lib/stores';
+  import {clicLibrairie, clicAccueil, clicFavoris, creerPlaylist,clicProfil } from '$lib/stores';
 
   function actionLibrairie(){
     $clicLibrairie = true;
     $clicFavoris = false;
     $clicAccueil = false;
     $creerPlaylist = false;
+    $clicProfil=false;
   }
 
   function actionAccueil(){
@@ -14,6 +15,7 @@
     $clicFavoris = false;
     $clicLibrairie = false;
     $creerPlaylist = false;
+    $clicProfil=false;
   }
 
   function actionFavoris(){
@@ -21,6 +23,7 @@
     $clicAccueil = false;
     $clicLibrairie = false;
     $creerPlaylist = false;
+    $clicProfil=false;
   }
 
   function actionCreerPlaylist(){
@@ -28,6 +31,7 @@
     $clicFavoris = false;
     $clicAccueil = false;
     $clicLibrairie = false;
+    $clicProfil=false;
   }
 </script>
 

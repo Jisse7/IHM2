@@ -3,6 +3,11 @@
 
 import { writable } from 'svelte/store';
 
+export const email = writable();
+export const nom = writable();
+export const prenom = writable();
+export const bio = writable();
+
 
 export const currentSongStore = writable(false);
 export const clicLibrairie = writable(false);
@@ -15,6 +20,8 @@ export const lectureFavoris = writable(false);
 export const changerMusique=writable();
 
 export const volume=writable();
+
+export const clicProfil = writable(false);
 
 // resultat de la recherche 
 

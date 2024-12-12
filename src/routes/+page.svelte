@@ -11,11 +11,12 @@
     import Login from "$lib/components/Login.svelte";
     import ResultatRecherche from "$lib/components/ResultatRecherche.svelte";
     import CreerPlaylist  from "$lib/components/CreerPlaylist.svelte";
+    import ProfilPage from "$lib/components/ProfilPage.svelte";
 
     import UserPlaylists from "$lib/components/UserPlaylists.svelte";
     
 
-    import {clicLibrairie,clicAccueil,clicFavoris,resultatRecherche,creerPlaylist,lectureFavoris } from '$lib/stores';
+    import {clicLibrairie,clicAccueil,clicFavoris,resultatRecherche,creerPlaylist,lectureFavoris,clicProfil } from '$lib/stores';
     import {login} from '$lib/stores';
     import {estCo} from '$lib/stores';
 
@@ -35,6 +36,11 @@
 <Navbar/>
 
 <div class="maincontenue" >
+
+
+  {#if $clicProfil}
+  <ProfilPage />
+{/if}
 
  {#if $clicLibrairie}
 

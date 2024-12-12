@@ -1,31 +1,34 @@
 <script>
-    import {login} from '$lib/stores';
+    import {login, email} from '$lib/stores';
     import {estCo} from '$lib/stores'; 
-    import { Facebook, Mail, Apple } from 'lucide-svelte'; //=pour les logos fb etc 
+    import { Facebook, Mail, Apple } from 'lucide-svelte';
     
+    // Variable locale pour stocker l'email pendant la saisie
+    let emailValue = "";
 
-   const retour= function handleBack() {
+    const retour = function handleBack() {
         $login = false;
     }
 
-   function setEstCo(){
-        $estCo= true;
+    function setEstCo(){
+        $estCo = true;
+        // On met à jour l'email dans le store lors de la connexion
+        $email = emailValue;
     }
 
     function acc(){
         setEstCo();
-        $login=false;
+        $login = false;
     }
-
 </script>
 
 <div class="login-container">
-    <div class="logo" >
+    <div class="logo">
         <button type=button on:click={retour} aria-label="Retourner à l'accueil">
-        <svg viewBox="0 0 16 16" height="40" width="40" fill="currentColor">
-            <path d="M8 0a8 8 0 100 16A8 8 0 008 0zm3.669 11.538a.498.498 0 01-.686.165c-1.879-1.147-4.243-1.407-7.028-.77a.499.499 0 01-.222-.973c3.048-.696 5.662-.397 7.77.892a.5.5 0 01.166.686zm.979-2.178a.624.624 0 01-.858.205c-2.15-1.321-5.428-1.704-7.972-.932a.625.625 0 01-.362-1.194c2.905-.881 6.517-.454 8.986 1.063a.624.624 0 01.206.858zm.084-2.268C10.154 5.56 5.9 5.419 3.438 6.166a.748.748 0 11-.434-1.432c2.825-.857 7.523-.692 10.492 1.07a.747.747 0 11-.764 1.288z"/>
-        </svg>
-    </button>
+            <svg viewBox="0 0 16 16" height="40" width="40" fill="currentColor">
+                <path d="M8 0a8 8 0 100 16A8 8 0 008 0zm3.669 11.538a.498.498 0 01-.686.165c-1.879-1.147-4.243-1.407-7.028-.77a.499.499 0 01-.222-.973c3.048-.696 5.662-.397 7.77.892a.5.5 0 01.166.686zm.979-2.178a.624.624 0 01-.858.205c-2.15-1.321-5.428-1.704-7.972-.932a.625.625 0 01-.362-1.194c2.905-.881 6.517-.454 8.986 1.063a.624.624 0 01.206.858zm.084-2.268C10.154 5.56 5.9 5.419 3.438 6.166a.748.748 0 11-.434-1.432c2.825-.857 7.523-.692 10.492 1.07a.747.747 0 11-.764 1.288z"/>
+            </svg>
+        </button>
     </div>
 
     <h1>J'ai un compte Spotify</h1>
@@ -34,17 +37,17 @@
         <button class="social-button">
             <Mail class="w-5 h-5" />
             <span>Continuer avec Google</span>
-          </button>
-          
-          <button class="social-button">
+        </button>
+        
+        <button class="social-button">
             <Facebook class="w-5 h-5 text-blue-600" />
             <span>Continuer avec Facebook</span>
-          </button>
-          
-          <button class="social-button">
+        </button>
+        
+        <button class="social-button">
             <Apple class="w-5 h-5" />
             <span>Continuer avec Apple</span>
-          </button>
+        </button>
     </div>
 
     <div class="divider">ou</div>
@@ -56,6 +59,7 @@
                 type="email" 
                 id="email"
                 placeholder="Adresse e-mail ou nom d'utilisateur"
+                bind:value={emailValue}
             />
         </div>
 
