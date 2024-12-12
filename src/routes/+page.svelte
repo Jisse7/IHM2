@@ -35,18 +35,13 @@
 <Navbar/>
 
 <div class="maincontenue" >
-<!-- <Player/> -->
+
  {#if $clicLibrairie}
 
 <UserPlaylists/>
 
- <!-- <Librairie/> -->
  
  {/if}
-
-<!-- <Player/> -->
- <!-- <Librairie/> -->
-
 
  {#if $resultatRecherche}
   <ResultatRecherche/>
@@ -82,34 +77,34 @@
       top: 13%;
       height: 84%;
       width: 85%;
-      /* background-color: red; */
+
       overflow-y: auto;
       overflow-x: auto; 
 
-      /* background-color: #333; */
+    
       border-radius: 8px;
 
-      padding-right: 10px; /* Pour ajouter un espace pour la barre de défilement */
+      padding-right: 10px; 
     }
   
-    /* Stylisation de la barre de défilement */
+  
     .maincontenue::-webkit-scrollbar {
-      width: 12px; /* Largeur de la barre de défilement */
+      width: 12px; 
     }
   
     .maincontenue::-webkit-scrollbar-track {
-      background-color: #333; /* Couleur du fond de la piste de la barre de défilement */
-      border-radius: 10px; /* Arrondir les bords de la piste */
+      background-color: #333; 
+      border-radius: 10px; 
     }
   
     .maincontenue::-webkit-scrollbar-thumb {
-      background-color: #888; /* Couleur du curseur de la barre de défilement */
-      border-radius: 10px; /* Arrondir les bords du curseur */
-      border: 3px solid #333; /* Ajout d'une bordure autour du curseur */
+      background-color: #888; 
+      border-radius: 10px; 
+      border: 3px solid #333; 
     }
   
     .maincontenue::-webkit-scrollbar-thumb:hover {
-      background-color: #555; /* Changer la couleur du curseur quand il est survolé */
+      background-color: #555; 
     }
 
   </style>
