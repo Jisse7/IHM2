@@ -1,7 +1,7 @@
 <script>
     import { clicProfil, estCo, email, nom, prenom, bio } from '$lib/stores';
     
-    // Simulation des données utilisateur initiales
+    // fake données
     let userData = {
       nom: $nom || "Volé",
       prenom: $prenom || "Compte",
@@ -15,7 +15,7 @@
     let successMessage = "";
   
     function updateProfile() {
-      // Mise à jour des stores avec les nouvelles valeurs
+      //pr mettre à jour les stores avec les nouvelles valeurs
       $nom = userData.nom;
       $prenom = userData.prenom;
       $bio = userData.bio;
@@ -45,7 +45,7 @@
     function logout() {
       $estCo = false;
       $clicProfil = false;
-      // Réinitialiser les données utilisateur
+      // pour réinit les données utilisateur
       $email = "";
       $nom = "";
       $prenom = "";
@@ -56,7 +56,7 @@
   <div class="profile-container">
     <div class="profile-content">
       <div class="profile-section">
-        <h3>Informations personnelles</h3>
+        <h4>Informations personnelles</h4>
         <div class="form-group">
           <label for="email">Email</label>
           <input type="email" id="email" value={$email} disabled />
@@ -77,7 +77,7 @@
       </div>
   
       <div class="profile-section">
-        <h3>Changer le mot de passe</h3>
+        <h4>Changer le mot de passe</h4>
         <div class="form-group">
           <label for="current-password">Mot de passe actuel</label>
           <input type="password" id="current-password" bind:value={currentPassword} />
@@ -115,7 +115,7 @@
       background-color: #282828;
       border-radius: 8px;
       width: 80%;
-      max-width: 600px;
+      max-width: 550px;
       margin: 0 auto;
       color: white;
       padding: 20px;
@@ -163,6 +163,7 @@
       cursor: pointer;
       font-weight: bold;
       margin-top: 10px;
+      
     }
   
     .update-button:hover {

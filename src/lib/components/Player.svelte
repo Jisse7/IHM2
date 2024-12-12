@@ -32,15 +32,8 @@ onMount(() => {
   if (playlist && playlist.length > 0) {
     loadTrack($thisNextTrack);
     index.set($thisNextTrack);
-    audio.play()
-      .then(() => {
-        isPlaying.set(true);
-        status.set('playing');
-      })
-      .catch(error => {
-        console.error('Erreur lors de la lecture automatique:', error);
-        status.set('error');
-      });
+    isPlaying.set(false);
+    status.set('paused');
   }
 
   audio.addEventListener('timeupdate', () => {

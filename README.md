@@ -41,3 +41,5 @@ https://www.figma.com/design/vlmJAuTpbJ860QjBQhhrd8/IHM2?node-id=0-1&node-type=c
 ## Lien vers le modèle de tâche : 
 
 https://drive.google.com/file/d/1Bm-mYTRO0GyaZUD5mYsBxsFNzCl1Pjsv/view?usp=sharing
+
+## Tous les documents du projet se trouve dans le dossier Documents à rendre IHM2

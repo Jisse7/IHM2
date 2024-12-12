@@ -125,7 +125,8 @@ import {volume} from '$lib/stores.js'
       // Charger la première piste au montage
       if (playlist.length > 0 && currentIndex !== undefined) {
           loadTrack(currentIndex);
-          audio.play().catch(err => console.error('Erreur lors de la lecture:', err));
+          isPlaying.set(false);
+status.set('paused');
       }
   
       return () => {

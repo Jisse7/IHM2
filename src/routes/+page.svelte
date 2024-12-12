@@ -41,7 +41,9 @@
   {#if $clicProfil}
   <ProfilPage />
 {/if}
-
+{#if $resultatRecherche}
+<ResultatRecherche/>
+{/if}
  {#if $clicLibrairie}
 
 <UserPlaylists/>
@@ -49,14 +51,14 @@
  
  {/if}
 
- {#if $resultatRecherche}
-  <ResultatRecherche/>
-{/if}
-
  {#if $clicAccueil}
  <PlayListsList/>
  
  {/if}
+
+
+
+
 
  {#if $creerPlaylist}
   <CreerPlaylist />

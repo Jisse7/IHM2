@@ -39,16 +39,9 @@
           loadTrack($thisNextTrack);
           // Met à jour l'index
           index.set($thisNextTrack);
-          // Commence la lecture automatiquement
-          audio.play()
-              .then(() => {
-                  isPlaying.set(true);
-                  status.set('playing');
-              })
-              .catch(error => {
-                  console.error('Erreur lors de la lecture automatique:', error);
-                  status.set('error');
-              });
+          // Commence la lecture en pause
+       isPlaying.set(false);
+status.set('paused');
       }
   
       // Mise à jour du temps et de la durée
