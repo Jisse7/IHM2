@@ -2,7 +2,7 @@
 
 Auteurs : Yanis B. M2 IC - Jean-Christophe F. M2 DCISS
 
-## Lien vers le Figma du projet : 
+## Lien vers la maquette interactive Figma du projet : 
 
 https://www.figma.com/design/vlmJAuTpbJ860QjBQhhrd8/IHM2?node-id=0-1&node-type=canvas&t=cvGRkcapqHF25AYj-0
 
