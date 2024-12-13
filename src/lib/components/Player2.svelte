@@ -42,6 +42,17 @@
           // Commence la lecture en pause
        isPlaying.set(false);
 status.set('paused');
+
+//lecture auto : delete isPlaying et status
+// audio.play()
+//       .then(() => {
+//         isPlaying.set(true);
+//         status.set('playing');
+//       })
+//       .catch(error => {
+//         console.error('Erreur lors de la lecture automatique:', error);
+//         status.set('error');
+//       });
       }
   
       // Mise à jour du temps et de la durée

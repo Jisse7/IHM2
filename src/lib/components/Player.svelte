@@ -34,6 +34,17 @@ onMount(() => {
     index.set($thisNextTrack);
     isPlaying.set(false);
     status.set('paused');
+
+    //lecture auto : delete isPlaying et status
+// audio.play()
+//       .then(() => {
+//         isPlaying.set(true);
+//         status.set('playing');
+//       })
+//       .catch(error => {
+//         console.error('Erreur lors de la lecture automatique:', error);
+//         status.set('error');
+//       });
   }
 
   audio.addEventListener('timeupdate', () => {
